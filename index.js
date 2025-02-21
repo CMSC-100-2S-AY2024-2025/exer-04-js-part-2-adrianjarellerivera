@@ -6,6 +6,8 @@ import { v4 as uuid } from 'uuid';
 import validator from 'validator';
 import fs from 'fs';
 
+
+// Function to generate a unique ID
 function generateUniqueID(fname, lname){
 
     if ( typeof fname !== 'string' || typeof lname !== 'string') // check if the input is a string
@@ -17,6 +19,7 @@ function generateUniqueID(fname, lname){
     return uniqueID; 
 }
 
+// Function to add an account
 function addAccount(array_info){
 
     if (!Array.isArray(array_info)) return false; // check if the input is an array
@@ -31,7 +34,7 @@ function addAccount(array_info){
         return false; // check if the elements are strings
 
     if (!validator.isEmail(email)) return false; // check if the email is valid
-    if (age < 18) return false; // check if the age is greater than or equal to 18
+    if (age < 18) return false; // check if the age is less than 18
 
     const uniqueID = generateUniqueID(fname, lname); // generate a unique ID using the function generateUniqueID
     const userData = `${fname},${lname},${email},${age},${uniqueID}\n`; // format the user data that will be written to the file
